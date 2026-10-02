@@ -34,6 +34,7 @@ See `CURRENT_STATE.md`.
 - `6998735` — T012 approval + executor
 - `d1f28ae` — T013 live notification router (kill-switch off)
 - `1a140d9` — T014 additional scouts (changedetection, paperless, n8n)
+- `edc1c7e` — live wiring: 6 new systemd timers (scouts 15m, umbrel-health 10m, textbee-poll 10m) + RESEARCH auto-invocation hook in applier; 182/182 tests green at commit time
 
 ## Completed
 - pre-change `personal_platform` backup created and restore catalog verified
@@ -83,6 +84,8 @@ Three pre-existing staged non-proactive edits remain untouched in the live repo.
 ## Not yet implemented
 Nothing on the current board. Open live decisions for the user:
 - arm the notification router kill-switch (`touch /home/umbrel/.jarvis/proactive-router-live`)
+- AgentMail live wiring route: redeploy the Node receiver container (risky) vs host API-key poller (needs his approval to provision the key on the Umbrel)
+- reconcile parallel wiring: a second agent's uncommitted source_tick.py/shadow_cycle.py runs scouts inside the 5m poller tick, duplicating the committed separate-timer approach (nothing broken, tests 192/192 green, but sources are polled twice)
 - build the Conduit APK (Dart changes uncompiled; needs Flutter toolchain)
 - connect Google Calendar (deferred scout)
 
