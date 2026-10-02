@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JudgeDecision",
+  "type": "object",
+  "required": [
+    "decision",
+    "reason",
+    "confidence"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": [
+        "DROP",
+        "REMEMBER",
+        "IDEA",
+        "RESEARCH",
+        "ACT",
+        "ASK",
+        "INTERRUPT"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "user_message": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recheck_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "memory_update": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "requested_action": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "additionalProperties": false
+}

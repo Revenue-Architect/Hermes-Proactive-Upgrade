@@ -1,0 +1,33 @@
+proactive:
+  enabled: true
+  mode: shadow
+
+attention:
+  quiet_hours:
+    enabled: true
+    start: "23:00"
+    end: "07:00"
+    allow_urgent: true
+
+  topic_cooldown_minutes:
+    server: 60
+    delivery: 180
+    commitment: 60
+    mail: 60
+    sms: 30
+
+research:
+  max_depth: 2
+
+actions:
+  class_a: automatic
+  class_b: automatic
+  class_c: allowlist
+  class_d: approval_required
+  class_e: explicit_approval_required
+
+notifications:
+  preferred_structured_surface: conduit
+  infrastructure_fallback: ntfy
+  sms_provider: textbee
+  third_party_sms_requires_approval: true

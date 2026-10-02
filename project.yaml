@@ -1,0 +1,35 @@
+project: hermes-proactive-agent
+baseline_date: 2026-10-01
+canonical_repo: /home/umbrel/umbrel-config
+canonical_database: personal_platform
+
+boundaries:
+  operational_state: postgres
+  episodic_memory: hindsight
+  reference_retrieval: qdrant
+  integration_plumbing: n8n
+  reasoning: hermes
+  model_routing: litellm
+  human_surface: conduit
+  sms: textbee
+  infrastructure_notifications: ntfy
+
+v1_sources:
+  - commitments
+  - textbee
+  - agentmail
+  - umbrel_health
+
+judgments:
+  - DROP
+  - REMEMBER
+  - IDEA
+  - RESEARCH
+  - ACT
+  - ASK
+  - INTERRUPT
+
+modes:
+  - off
+  - shadow
+  - live
