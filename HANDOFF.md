@@ -4,10 +4,10 @@
 2026-10-01
 
 ## Current phase
-Phase 2 — first real-world loops are ready to begin. T004-T011 complete; T012 (approval + executor) is now unblocked.
+Phase 2 complete — all 14 tasks done. The proactive loop is built end to end (shadow judge live, router built with kill-switch OFF, Conduit parked).
 
 ## Current task
-T008-T011 complete. T012 is READY and may proceed.
+T012-T014 complete. No tasks remain on the board. Next: user decision to arm the router.
 
 ## Last verified live state
 See `CURRENT_STATE.md`.
@@ -31,6 +31,9 @@ See `CURRENT_STATE.md`.
 - `7fdc4b8` — T009 Hindsight/Qdrant context adapters
 - `d0c1be4` — T010 bounded research loop
 - `64d6859` — T011 backend API for Conduit surfaces
+- `6998735` — T012 approval + executor
+- `d1f28ae` — T013 live notification router (kill-switch off)
+- `1a140d9` — T014 additional scouts (changedetection, paperless, n8n)
 
 ## Completed
 - pre-change `personal_platform` backup created and restore catalog verified
@@ -58,6 +61,10 @@ See `CURRENT_STATE.md`.
 - T009: 19/19 (Hindsight recall + Qdrant keyword retrieval, bounded caps, conflict labeling, graceful degradation); full suite 103 pass
 - T010: 11/11 (useful/no-result/urgent/depth-2-refusal/failure-retry/idempotent rerun/no-notify proof); full suite 124/124 pass
 - T011: 10/10 backend contract tests; proactive API live at 127.0.0.1:8899 via Tailscale Serve :8445 (systemd unit active, bearer token at /home/umbrel/.jarvis/proactive-api-token); Conduit Attention/Ideas/Activity + deep links committed on parked branch (Dart NOT compiled — no Flutter toolchain in this environment)
+- T012: 10/10 (Class A/B auto, Class D blocked w/o approval, approval→execute, rejection blocks, idempotent duplicate, ambiguous no-blind-retry); action classes A–E with registry enforcement; POST /v1/approvals/<id>/decision added to API (all other POSTs still 405)
+- T013: 21/21 (kill-switch off never sends, dry-run never sends, INTERRUPT→SMS, dedup, IDEA/non-urgent ASK silent, quiet-hours hold + morning delivery, suppressions, cooldowns); systemd timers installed and firing (poller/applier/router every 5m); router tick verified armed:false, zero sends; Conduit leg dormant by design; WhatsApp flag-gated off
+- T014: 16/16 (3 scouts: ChangeDetection, Paperless, n8n workflow failures); Teams/bills skipped with reasons (Graph app-only limits, Gmail unreachable); calendar deferred (user connecting later)
+- Full suite: 171/171 pass (4 pre-existing skips), zero test residue
 
 ## Safety / rollback
 Pre-change database dump:
@@ -74,12 +81,13 @@ The proactive commits are present locally on Umbrel and have a separately verifi
 Three pre-existing staged non-proactive edits remain untouched in the live repo.
 
 ## Not yet implemented
-- approval + executor (T012, now READY)
-- live notification router (T013)
-- additional scouts (T014)
+Nothing on the current board. Open live decisions for the user:
+- arm the notification router kill-switch (`touch /home/umbrel/.jarvis/proactive-router-live`)
+- build the Conduit APK (Dart changes uncompiled; needs Flutter toolchain)
+- connect Google Calendar (deferred scout)
 
 ## Next exact tasks
-- `tasks/TASK-012-approval-executor.md` — the approval gate + action executor; consumes ASK/INTERRUPT judgments and approved research follow-ups
+Board is clear (T001–T014 DONE). Awaiting user direction.
 
 ## Do not touch
 - unrelated staged LiteLLM / Forgejo-sync changes

@@ -13,9 +13,9 @@
 | T009 | Hindsight/Qdrant context | DONE | T008 | No |
 | T010 | Research loop | DONE | T009 | Yes |
 | T011 | Conduit Attention/Ideas/Activity | DONE | T009 | Yes |
-| T012 | Approval + executor | READY | T010-T011 | No |
-| T013 | Live notification router | BLOCKED | T012 | No |
-| T014 | Additional scouts | BLOCKED | T013 | Yes |
+| T012 | Approval + executor | DONE | T010-T011 | No |
+| T013 | Live notification router | DONE | T012 | No |
+| T014 | Additional scouts | DONE | T013 | Yes |
 
 Allowed status values:
 - READY
