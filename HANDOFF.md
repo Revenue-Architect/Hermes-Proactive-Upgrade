@@ -4,10 +4,10 @@
 2026-10-01
 
 ## Current phase
-Phase 2 — first real-world loops are ready to begin.
+Phase 2 — first real-world loops are ready to begin. T004-T007 complete; T008 (central judge) is now unblocked.
 
 ## Current task
-T001-T003 complete. T004-T007 are READY and may proceed in parallel with separate file ownership.
+T004-T007 complete. T008 is READY and may proceed.
 
 ## Last verified live state
 See `CURRENT_STATE.md`.
@@ -23,6 +23,10 @@ See `CURRENT_STATE.md`.
 - `0d5120e` — T002 proactive schema + rollback migration
 - `acca49c` — T003 deterministic ingestion core + tests
 - `1ea9a43` — ignore Python cache artifacts
+- `29b4c5d` — T004 commitments follow-up state machine
+- `2a13dc6` — T005 TextBee SMS adapter
+- `99c4fcb` — T006 AgentMail adapter
+- `047aa9d` — T007 Umbrel health adapter
 
 ## Completed
 - pre-change `personal_platform` backup created and restore catalog verified
@@ -41,6 +45,11 @@ See `CURRENT_STATE.md`.
 - 1 live Postgres integration test
 - migration up/down/up validation for T002
 - function up/down/up validation for T003
+- T004: 9/9 (migration, due, overdue, snoozed, waiting-on-other, reply-received, resolved, reopened, duplicate-run idempotency); migration 003 up/down/up verified live, 8 rows preserved
+- T005: 8/8 (inbound idempotent replay, reply-to-open-commitment, unrelated SMS, approved/denied/pending send, ambiguous-failure retry without double-send, home-number alert)
+- T006: 22/22 (17 unit + 5 integration: duplicate webhook, same-thread follow-up, unrelated mail, promise/deadline extraction, reply resolves waiting state)
+- T007: 21/21 (debounce, evidence stability, 20-identical-alerts→1 candidate, alert-then-recovery→0 candidates, persistent-failure evidence update, disk threshold, recovery resolution)
+- Full suite: 67/67 pass, zero test residue
 
 ## Safety / rollback
 Pre-change database dump:
@@ -57,23 +66,13 @@ The proactive commits are present locally on Umbrel and have a separately verifi
 Three pre-existing staged non-proactive edits remain untouched in the live repo.
 
 ## Not yet implemented
-- commitment follow-up extension
-- TextBee proactive ingestion loop
-- AgentMail proactive ingestion loop
-- Umbrel proactive health adapter
-- central Hermes judge
+- central Hermes judge (T008, now READY)
 - proactive Conduit surfaces
 - research/executor loop
 - live notification router
 
 ## Next exact tasks
-Any of the following may start now:
-- `tasks/TASK-004-commitments-followups.md`
-- `tasks/TASK-005-textbee.md`
-- `tasks/TASK-006-agentmail.md`
-- `tasks/TASK-007-umbrel-health.md`
-
-T004-T007 are intentionally parallel-safe only when agents use non-overlapping files and do not modify the shared ingestion core without coordination.
+- `tasks/TASK-008-monitor-judge.md` — the central Hermes judge; consumes pending candidates from domains `commitment`, `mail`, `server`
 
 ## Do not touch
 - unrelated staged LiteLLM / Forgejo-sync changes
