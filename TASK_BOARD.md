@@ -9,11 +9,11 @@
 | T005 | TextBee adapter | DONE | T003 | Yes |
 | T006 | AgentMail adapter | DONE | T003 | Yes |
 | T007 | Umbrel health adapter | DONE | T003 | Yes |
-| T008 | Hermes monitor + judge | READY | T004-T007 | No |
-| T009 | Hindsight/Qdrant context | BLOCKED | T008 | No |
-| T010 | Research loop | BLOCKED | T009 | Yes |
-| T011 | Conduit Attention/Ideas/Activity | BLOCKED | T009 | Yes |
-| T012 | Approval + executor | BLOCKED | T010-T011 | No |
+| T008 | Hermes monitor + judge | DONE | T004-T007 | No |
+| T009 | Hindsight/Qdrant context | DONE | T008 | No |
+| T010 | Research loop | DONE | T009 | Yes |
+| T011 | Conduit Attention/Ideas/Activity | DONE | T009 | Yes |
+| T012 | Approval + executor | READY | T010-T011 | No |
 | T013 | Live notification router | BLOCKED | T012 | No |
 | T014 | Additional scouts | BLOCKED | T013 | Yes |
 

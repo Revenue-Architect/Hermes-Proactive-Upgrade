@@ -4,10 +4,10 @@
 2026-10-01
 
 ## Current phase
-Phase 2 — first real-world loops are ready to begin. T004-T007 complete; T008 (central judge) is now unblocked.
+Phase 2 — first real-world loops are ready to begin. T004-T011 complete; T012 (approval + executor) is now unblocked.
 
 ## Current task
-T004-T007 complete. T008 is READY and may proceed.
+T008-T011 complete. T012 is READY and may proceed.
 
 ## Last verified live state
 See `CURRENT_STATE.md`.
@@ -27,6 +27,10 @@ See `CURRENT_STATE.md`.
 - `2a13dc6` — T005 TextBee SMS adapter
 - `99c4fcb` — T006 AgentMail adapter
 - `047aa9d` — T007 Umbrel health adapter
+- `44ccf0b` — T008 monitor gate + central judge (shadow)
+- `7fdc4b8` — T009 Hindsight/Qdrant context adapters
+- `d0c1be4` — T010 bounded research loop
+- `64d6859` — T011 backend API for Conduit surfaces
 
 ## Completed
 - pre-change `personal_platform` backup created and restore catalog verified
@@ -50,6 +54,10 @@ See `CURRENT_STATE.md`.
 - T006: 22/22 (17 unit + 5 integration: duplicate webhook, same-thread follow-up, unrelated mail, promise/deadline extraction, reply resolves waiting state)
 - T007: 21/21 (debounce, evidence stability, 20-identical-alerts→1 candidate, alert-then-recovery→0 candidates, persistent-failure evidence update, disk threshold, recovery resolution)
 - Full suite: 67/67 pass, zero test residue
+- T008: 17/17 (monitor wake/no-wake, malformed judgment fail-closed, restart state, shadow zero-notifications); full live loop proven candidate → wake → judge → validated judgment → applied transactionally; one Hermes cron job `proactive-judge` (30m, monitor-gated, qwen3-30b-a3b, deliver local)
+- T009: 19/19 (Hindsight recall + Qdrant keyword retrieval, bounded caps, conflict labeling, graceful degradation); full suite 103 pass
+- T010: 11/11 (useful/no-result/urgent/depth-2-refusal/failure-retry/idempotent rerun/no-notify proof); full suite 124/124 pass
+- T011: 10/10 backend contract tests; proactive API live at 127.0.0.1:8899 via Tailscale Serve :8445 (systemd unit active, bearer token at /home/umbrel/.jarvis/proactive-api-token); Conduit Attention/Ideas/Activity + deep links committed on parked branch (Dart NOT compiled — no Flutter toolchain in this environment)
 
 ## Safety / rollback
 Pre-change database dump:
@@ -66,13 +74,12 @@ The proactive commits are present locally on Umbrel and have a separately verifi
 Three pre-existing staged non-proactive edits remain untouched in the live repo.
 
 ## Not yet implemented
-- central Hermes judge (T008, now READY)
-- proactive Conduit surfaces
-- research/executor loop
-- live notification router
+- approval + executor (T012, now READY)
+- live notification router (T013)
+- additional scouts (T014)
 
 ## Next exact tasks
-- `tasks/TASK-008-monitor-judge.md` — the central Hermes judge; consumes pending candidates from domains `commitment`, `mail`, `server`
+- `tasks/TASK-012-approval-executor.md` — the approval gate + action executor; consumes ASK/INTERRUPT judgments and approved research follow-ups
 
 ## Do not touch
 - unrelated staged LiteLLM / Forgejo-sync changes
