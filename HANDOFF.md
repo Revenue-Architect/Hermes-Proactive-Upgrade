@@ -93,6 +93,9 @@ Nothing on the current board. Remaining parked/deferred items:
 ## Router status
 ARMED 2026-10-02 11:43 EDT by explicit user order ("Lets arm it!"). Kill-switch file `/home/umbrel/.jarvis/proactive-router-live` present. First armed tick: evaluated 0, sent 0 (no INTERRUPT/ASK in queue — correct). To disarm: `rm /home/umbrel/.jarvis/proactive-router-live`.
 
+## n8n scout recency fix (2026-10-02 ~13:10 EDT, live commit cdf68a7)
+User feedback: early judge output "seems useless". Diagnosis: the n8n scout had no recency cutoff, so when it went live it backfilled week-old failed executions as fresh candidates — the judge solemnly RESEARCHed a 2026-09-25 GLiNER pipeline failure burst that had already self-resolved (workflow green since). Fix: `RECENCY_CUTOFF_HOURS = 24` in `proactive/scouts/n8n.py`; failures older than 24h never become candidates. Tests: 198/198 pass (4 expected skips); new tests cover stale-skip, fresh-emit, and `_is_fresh` boundaries. Live dry-run: 0 events. Note: commit cdf68a7 briefly swept 3 intentionally-staged unrelated files; fixed via soft reset, recommitted proactive-only, restored their staged state.
+
 ## Next exact tasks
 Board is clear (T001–T014 DONE). Awaiting user direction.
 
