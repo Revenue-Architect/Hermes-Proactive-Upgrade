@@ -85,11 +85,13 @@ The proactive commits are present locally on Umbrel and have a separately verifi
 Three pre-existing staged non-proactive edits remain untouched in the live repo.
 
 ## Not yet implemented
-Nothing on the current board. Open live decisions for the user:
-- arm the notification router kill-switch (`touch /home/umbrel/.jarvis/proactive-router-live`) — the explicit go-live
+Nothing on the current board. Remaining parked/deferred items:
 - optionally wire the kai receiver (agentmail-kai-receiver) into the loop — hermes receiver only for now
 - build the Conduit APK (Dart changes uncompiled; needs Flutter toolchain)
 - connect Google Calendar (deferred scout)
+
+## Router status
+ARMED 2026-10-02 11:43 EDT by explicit user order ("Lets arm it!"). Kill-switch file `/home/umbrel/.jarvis/proactive-router-live` present. First armed tick: evaluated 0, sent 0 (no INTERRUPT/ASK in queue — correct). To disarm: `rm /home/umbrel/.jarvis/proactive-router-live`.
 
 ## Next exact tasks
 Board is clear (T001–T014 DONE). Awaiting user direction.
