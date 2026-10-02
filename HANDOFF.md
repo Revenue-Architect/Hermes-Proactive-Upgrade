@@ -36,6 +36,8 @@ See `CURRENT_STATE.md`.
 - `1a140d9` — T014 additional scouts (changedetection, paperless, n8n)
 - `edc1c7e` — live wiring: 6 new systemd timers (scouts 15m, umbrel-health 10m, textbee-poll 10m) + RESEARCH auto-invocation hook in applier; 182/182 tests green at commit time
 - `18e37b4` — AgentMail receiver wiring + wiring reconciliation: hermes receiver now mirrors inbound mail to a proactive spool (drained every 5m via adapter CLI); parallel uncommitted source_tick/shadow_cycle approach removed (timers kept on merit); commitment caretaker timer added; pushed to private Forgejo
+- `d78cb17` — judge SILENT blocker fix: hardened prompt (SILENT only valid on empty candidate list), batched judge input (max 8, priority-ordered), applier fail-closed on SILENT-with-candidates; backlog triaged (3 stale expired, 19 judged: 5 RESEARCH/2 DROP/12 REMEMBER); E2E proven on production loop
+- `4dc2553` — churn fix: dropped volatile `last_checked` from ChangeDetection evidence (it poisoned the evidence hash and flipped judged candidates to pending every 15m); regression test added
 
 ## Completed
 - pre-change `personal_platform` backup created and restore catalog verified
